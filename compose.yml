@@ -1,0 +1,15 @@
+services:
+  backend:
+    build: .
+    container_name: ifgram
+    stdin_open: true
+    tty: true
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./ifgram:/ifgram
+      - maven-repo:/root/.m2
+    working_dir: /ifgram
+
+volumes:
+  maven-repo:
