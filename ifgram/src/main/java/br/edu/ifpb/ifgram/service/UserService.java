@@ -2,6 +2,7 @@ package br.edu.ifpb.ifgram.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.aspectj.weaver.bcel.ExceptionRange;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,14 @@ public class UserService {
             listaUsuariosResponse.add(userReponse);
         }
         return listaUsuariosResponse;
+    }
+
+    public UserResponse atualizarUsuario(UserRequest userRequest){
+        User usuario = repository.findByEmail(userRequest.email());
+        usuario.setNome(userRequest.nome());
+        repository.save(usuario);
+
+        return UserResponse.from(usuario);
+
     }
 }

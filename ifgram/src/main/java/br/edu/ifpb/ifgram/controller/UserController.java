@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,6 +33,11 @@ public class UserController {
     public UserResponse postUser(UserRequest request) throws Exception {
         UserResponse userResponse = service.criar(request);
         return userResponse;
+    }
+
+    @PutMapping
+    public UserResponse UpdateUser(UserRequest request){
+        return service.atualizarUsuario(request);
     }
 
     @DeleteMapping 
