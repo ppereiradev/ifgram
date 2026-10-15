@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @PutMapping
-    public UserResponse UpdateUser(UserRequest request){
+    public UserResponse UpdateUser(UserRequest request) throws Exception {
         return service.atualizarUsuario(request);
     }
 

@@ -11,7 +11,7 @@ import br.edu.ifpb.ifgram.model.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 
     boolean existsByEmail(String email);
-    User findByEmail(String email);
+    Optional<User> findByEmail(String email);
     List<User> findByNomeContainingIgnoreCase(String trecho);
 
     @Query("select u from User u where u.email like concat('%', :dominio)")

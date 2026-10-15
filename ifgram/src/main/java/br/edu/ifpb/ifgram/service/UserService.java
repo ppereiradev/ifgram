@@ -47,12 +47,15 @@ public class UserService {
         return listaUsuariosResponse;
     }
 
-    public UserResponse atualizarUsuario(UserRequest userRequest){
-        User usuario = repository.findByEmail(userRequest.email());
-        usuario.setNome(userRequest.nome());
-        repository.save(usuario);
+    public UserResponse atualizarUsuario(UserRequest request) throws Exception {
+        Optional<User> usuario = repository.findByEmail(request.email());
+        if(usuario.isEmpty()){
+            throw new Exception("usuário não existe na base de dados.");
+        }
+        User usuarioSalvo = usuario.get();
+        usuarioSalvo.setNome(request.nome());
+        repository.save(usuarioSalvo);
 
-        return UserResponse.from(usuario);
-
+        return UserResponse.from(usuarioSalvo);
     }
 }
